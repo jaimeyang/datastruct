@@ -25,6 +25,7 @@ public:
     bool is_palindrome(slink_char_uptr data);
     //单链表反转
     void reverse(slink_char_sptr data);
+
 private:
     unique_ptr<SingleLink<char>> m_slink;
 };
