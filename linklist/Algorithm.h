@@ -25,7 +25,9 @@ public:
     bool is_palindrome(slink_char_uptr data);
     //单链表反转
     void reverse(slink_char_sptr data);
-
+    //单练表环的检测
+    bool isCircle(slink_char_sptr list);
+    //链表合并
 private:
     unique_ptr<SingleLink<char>> m_slink;
 };

@@ -40,3 +40,16 @@ void Algorithm::reverse(slink_char_sptr data) {
     head->next = curr;
     return;
 }
+
+bool Algorithm::isCircle(slink_char_sptr list) {
+    auto fast = list.get()->get_head();
+    auto slow = list.get()->get_head();
+    while ( fast->next != nullptr ){
+        slow = slow->next;
+        fast = fast->next->next;
+        if (fast == slow){
+            return true;
+        }
+    }
+    return false;
+}

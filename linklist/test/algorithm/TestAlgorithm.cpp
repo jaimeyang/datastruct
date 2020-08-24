@@ -47,6 +47,20 @@ public:
         return link;
     }
 
+    auto create_circle_list(const char* data,int index1,int index2){
+        auto link = make_shared<SingleLink<char>>();
+        auto len = strlen(data);
+        char* p = const_cast<char *>(data);
+        for (int i = 0; i < len; ++i) {
+            link.get()->push_back(*p);
+            p++;
+        }
+        auto node = link.get()->get_data(index1);
+        auto node1 = link.get()->get_data(index2);
+        node->next = node1;
+        return link;
+    }
+
     unique_ptr<Algorithm> m_algorithm;
 };
 
@@ -78,5 +92,15 @@ TEST_F(TestAlgorithm,test_reverse){
         GTEST_ASSERT_EQ(*test_data,link.get()->get_data(i)->data);
         test_data++;
     }
+}
 
+TEST_F(TestAlgorithm,test_is_circle){
+    auto link = crate_shareptr_list("sssdsfasdf");
+    GTEST_ASSERT_EQ(false,m_algorithm.get()->isCircle(link));
+
+    auto link1 = create_circle_list("1234dfasd56",3,1);
+    GTEST_ASSERT_EQ(true,m_algorithm.get()->isCircle(link1));
+
+    auto link2 = create_circle_list("1234dfasd56",4,0);
+    GTEST_ASSERT_EQ(true,m_algorithm.get()->isCircle(link1));
 }
