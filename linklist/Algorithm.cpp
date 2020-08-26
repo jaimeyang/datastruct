@@ -53,3 +53,30 @@ bool Algorithm::isCircle(slink_char_sptr list) {
     }
     return false;
 }
+//todo 更符合面先对象的做法是 添加一个迭代类 去掉友元类
+slink_int_uptr Algorithm::merge(slink_int_uptr one, slink_int_uptr two) {
+    auto p1 = one.get()->get_head();
+    auto p2 = two.get()->get_head();
+    while ( (p2->next != nullptr) && (p1->next != nullptr) ){
+        int d1 = p1->next->data;
+        int d2 = p2->next->data;
+        if ( d1 >= d2 ){
+            auto temp = p2->next;
+            p2->next = temp->next;
+            temp->next = p1->next;
+            p1->next = temp;
+            one.get()->m_count++;
+        }else{
+            p1 = p1->next;
+        }
+    }
+    if ( p2->next != nullptr ){
+        p1->next = p2->next;
+        auto i = 0;
+        while (p2->next != nullptr){
+            one.get()->m_count++;
+            p2 = p2->next;
+        }
+    }
+    return std::move(one);
+}

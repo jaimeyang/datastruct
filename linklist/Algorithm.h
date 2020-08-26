@@ -14,6 +14,8 @@ using namespace std;
 using slink_char_uptr = unique_ptr<SingleLink<char>>;
 using slink_char_sptr = shared_ptr<SingleLink<char>>;
 
+using slink_int_uptr = unique_ptr<SingleLink<int>>;
+
 class Algorithm {
 public:
     Algorithm(){
@@ -28,6 +30,7 @@ public:
     //单练表环的检测
     bool isCircle(slink_char_sptr list);
     //链表合并
+    slink_int_uptr merge(slink_int_uptr one,slink_int_uptr two);
 private:
     unique_ptr<SingleLink<char>> m_slink;
 };

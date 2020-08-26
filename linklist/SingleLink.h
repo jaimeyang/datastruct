@@ -7,6 +7,8 @@
 
 #include <memory>
 
+class Algorithm;
+
 using namespace std;
 template<typename T>
 struct SNode{
@@ -30,6 +32,7 @@ public:
     SNode<T>* get_head(){
         return this->m_link;
     }
+
 
     void push_back(T data){
         insert(data,this->m_count);
@@ -93,6 +96,28 @@ public:
         this->m_count--;
         return 0;
     }
+
+    void del_reciprocal(int n){
+        auto fast = get_head();
+        auto slow = get_head();
+        if (fast->next == nullptr || (fast->next->next == nullptr)){
+            return;
+        }
+        auto size = 0;
+        while ( fast->next != nullptr ){
+            fast = fast->next;
+            size++;
+        }
+        auto pos = size - n;
+        for (int i = 0; i < pos; ++i) {
+            slow = slow->next;
+        }
+        auto temp = slow->next;
+        slow->next = temp->next;
+        delete temp;
+        temp = nullptr;
+        this->m_count--;
+    }
 public:
     void traverse();
 
@@ -104,7 +129,9 @@ private:
         return node;
     }
 private:
+    friend class Algorithm;
     SNode<T>* m_link = nullptr;
+    SNode<T>* m_iter = nullptr;
     int m_count = 0;
 };
 

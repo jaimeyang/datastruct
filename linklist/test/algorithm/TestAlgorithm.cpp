@@ -61,6 +61,18 @@ public:
         return link;
     }
 
+    auto create_order_list(int* data,int len){
+        auto link = make_unique<SingleLink<int>>();
+        for (int i = 0; i < len; ++i) {
+            int d = *data;
+            link.get()->push_back(d);
+            data++;
+        }
+        return std::move(link);
+    }
+
+
+
     unique_ptr<Algorithm> m_algorithm;
 };
 
@@ -103,4 +115,29 @@ TEST_F(TestAlgorithm,test_is_circle){
 
     auto link2 = create_circle_list("1234dfasd56",4,0);
     GTEST_ASSERT_EQ(true,m_algorithm.get()->isCircle(link1));
+
 }
+
+TEST_F(TestAlgorithm,test_merge){
+    int d1[] = {1,4,7,9};
+    auto link1 = create_order_list(d1,4);
+    int d2[] = {2,5,11,12};
+    auto link2 = create_order_list(d2,4);
+    auto r1 = m_algorithm.get()->merge(std::move(link1),std::move(link2));
+    int t1[] = {1,2,4,5,7,9,11,12};
+    for (int i = 0; i < 8; ++i) {
+        GTEST_ASSERT_EQ(t1[i],r1.get()->get_data(i)->data);
+    }
+
+    int d3[] = {1};
+    auto link3 = create_order_list(d3,1);
+    int d4[] = {2,5,11,12};
+    auto link4 = create_order_list(d4,4);
+    auto r2 = m_algorithm.get()->merge(std::move(link3),std::move(link4));
+    int t2[] = {1,2,5,11,12};
+    for (int i = 0; i < 5; ++i) {
+        GTEST_ASSERT_EQ(t2[i],r2.get()->get_data(i)->data);
+    }
+}
+
+

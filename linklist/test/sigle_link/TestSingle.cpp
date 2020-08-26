@@ -97,4 +97,16 @@ TEST_F(TestSingle,test_pop_back){
 
 }
 
+TEST_F(TestSingle,test_del_reciprocal){
+    for (int i = 0; i < 10; ++i) {
+        m_link.get()->push_back(i);
+    }
+    m_link.get()->del_reciprocal(1);
+    GTEST_ASSERT_EQ(8,m_link.get()->get_data(8)->data);
+    m_link.get()->del_reciprocal(2);
+    GTEST_ASSERT_EQ(6,m_link.get()->get_data(6)->data);
+
+    m_link.get()->del_reciprocal(8);
+    GTEST_ASSERT_EQ(1,m_link.get()->get_data(0)->data);
+}
 
