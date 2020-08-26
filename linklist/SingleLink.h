@@ -118,6 +118,37 @@ public:
         temp = nullptr;
         this->m_count--;
     }
+
+    void remove_all(){
+        while ( m_link->next != nullptr ){
+            auto temp = m_link->next;
+            m_link->next = temp->next;
+            delete temp;
+            temp = nullptr;
+            this->m_count--;
+        }
+    }
+
+    SNode<T>* middle(){
+        if ( m_link->next == nullptr ){
+            return nullptr;
+        }
+        if ( m_link->next->next == nullptr ){
+            return m_link->next;
+        }
+        auto p1 = get_head();
+        auto p2 = get_head();
+        while ( p1 != nullptr ){
+            p1 = p1->next;
+            if ( p1 == nullptr ){
+                return p2;
+            }else{
+                p1 = p1->next;
+                p2 = p2->next;
+            }
+        }
+        return p2;
+    }
 public:
     void traverse();
 

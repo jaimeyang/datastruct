@@ -110,3 +110,32 @@ TEST_F(TestSingle,test_del_reciprocal){
     GTEST_ASSERT_EQ(1,m_link.get()->get_data(0)->data);
 }
 
+TEST_F(TestSingle,test_middle){
+    for (int i = 0; i < 10; ++i) {
+        m_link.get()->push_back(i);
+    }
+    auto d1 = m_link.get()->middle()->data;
+    GTEST_ASSERT_EQ(4,d1);
+    m_link.get()->remove_all();
+
+    for (int i = 0; i < 1; ++i) {
+        m_link.get()->push_back(i);
+    }
+    auto d2 = m_link.get()->middle()->data;
+    GTEST_ASSERT_EQ(0,d2);
+    m_link.get()->remove_all();
+
+    for (int i = 0; i < 3; ++i) {
+        m_link.get()->push_back(i);
+    }
+    auto d3 = m_link.get()->middle()->data;
+    GTEST_ASSERT_EQ(1,d3);
+    m_link.get()->remove_all();
+
+    for (int i = 0; i < 7; ++i) {
+        m_link.get()->push_back(i);
+    }
+    auto d4 = m_link.get()->middle()->data;
+    GTEST_ASSERT_EQ(3,d4);
+    m_link.get()->remove_all();
+}
