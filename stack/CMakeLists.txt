@@ -7,6 +7,6 @@ include_directories(test/lib/googletest/googletest/include)
 
 add_subdirectory(test/lib/googletest)
 
-add_executable(stack Stack.cpp Stack.h test/arraystack/TestArrayStack.cpp LinkStack.cpp LinkStack.h)
+add_executable(stack Stack.cpp Stack.h test/arraystack/TestArrayStack.cpp LinkStack.cpp LinkStack.h test/linkstack/TestLinkStack.cpp)
 
 target_link_libraries(stack gtest gtest_main)
