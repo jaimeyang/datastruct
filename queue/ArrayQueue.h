@@ -22,7 +22,12 @@ public:
     }
 
     ~ArrayQueue(){
-
+        for (int i = 0; i < m_max_size; ++i) {
+            delete m_queue[i];
+            m_queue[i] = nullptr;
+        }
+        delete [] m_queue;
+        m_queue = nullptr;
     }
 
 public:
