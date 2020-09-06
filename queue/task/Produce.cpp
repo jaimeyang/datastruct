@@ -7,8 +7,10 @@
 
 void Produce::produce(int n) {
     for (int i = 0; i < n; ++i) {
-        m_coumsumer[m_last]->put_task(i);
-        m_last = (m_last + 1) % m_count;
+        while ( !(m_coumsumer[m_last]->put_task(i)) ){
+            m_last = (m_last + 1) % m_count;
+//            std::cout<<"data is "<<i<<std::endl;
+        }
     }
 }
 

@@ -23,18 +23,15 @@ bool Comsumer::put_task(int data) {
 
 void Comsumer::comsume() {
     while (true){
-        std::cout<<"comsume is "<<m_sum<<std::endl;
-        if ( m_queue->is_empty() ){
-            char buf[1];
-            //todo 设置超时时间
-            std::cout<<"before is "<<m_sum<<std::endl;
-
-            read(m_pair_fd[1],buf,1);
-        }
+//        if ( m_queue->is_empty() ){
+//            char buf[1];
+//            //todo 设置超时时间
+//            read(m_pair_fd[1],buf,1);
+//        }
         int data = 0;
         if ( m_queue->dequeue(data) ){
             m_sum += data;
-            std::cout<<"sum is "<<m_sum<<std::endl;
+            std::cout<<"data is "<<data<<std::endl;
         }
     }
 }

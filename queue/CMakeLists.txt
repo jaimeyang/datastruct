@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(queue)
 
 set(CMAKE_CXX_STANDARD 14)
+set_target_properties(${TARGET} PROPERTIES COMPILE_FLAGS "-pthread" LINK_FLAGS "-pthread")
 
 include_directories(test/lib/googletest/googletest/include)
 
