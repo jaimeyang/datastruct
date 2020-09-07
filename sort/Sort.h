@@ -21,6 +21,8 @@ public:
     unique_ptr<int> sort_bable(unique_ptr<int> data,int len);
 //    sort select
     unique_ptr<int> sort_select(unique_ptr<int> data,int len);
+    //todo improvement the alghrothm of direct bable
+    unique_ptr<int> sort_bable_2(unique_ptr<int> data,int len);
 private:
 };
 
