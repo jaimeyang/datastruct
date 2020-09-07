@@ -41,3 +41,18 @@ unique_ptr<int> Sort::sort_bable(unique_ptr<int> data, int len) {
     }
     return std::move(data);
 }
+
+unique_ptr<int> Sort::sort_select(unique_ptr<int> data, int len) {
+    for (int i = 0; i < len; ++i) {
+        int minIndex = i;
+        for (int j = i + 1; j < len; ++j) {
+            if ( data.get()[j] < data.get()[minIndex]){
+                minIndex = j;
+            }
+        }
+        int temp = data.get()[i];
+        data.get()[i] = data.get()[minIndex];
+        data.get()[minIndex] = temp;
+    }
+    return std::move(data);
+}

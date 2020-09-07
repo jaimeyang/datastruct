@@ -84,3 +84,35 @@ TEST_F(TestSort,test_bable){
         GTEST_ASSERT_EQ(14 + i,r2.get()[i]);
     }
 }
+
+TEST_F(TestSort,test_select){
+    auto a1 = std::make_unique<int>(6);
+    for (int i = 0; i < 6; ++i) {
+        a1.get()[i] = i;
+    }
+    auto r1 = m_sort.get()->sort_select(std::move(a1),6);
+    for (int i = 0; i < 6; ++i) {
+        GTEST_ASSERT_EQ(i,r1.get()[i]);
+    }
+//
+    auto a4 = std::make_unique<int>(11);
+    int b1[] = {1,23,12,6,44,100,12,66,12,55,2};
+    for (int i = 0; i < 11; i++){
+        a4.get()[i] = b1[i];
+    }
+    auto r3 = m_sort.get()->sort_select(std::move(a4),11);
+    int b2[] = {1,2,6,12,12,12,23,44,55,66,100};
+    for (int i = 0; i < 11; ++i) {
+        GTEST_ASSERT_EQ(b2[i],r3.get()[i]);
+    }
+//
+    auto a2 = std::make_unique<int>(7);
+    auto j = 20;
+    for (int i = 0; i < 7; ++i) {
+        a2.get()[i] = j - i;
+    }
+    auto r2 = m_sort.get()->sort_select(std::move(a2),7);
+    for (int i = 0; i < 7; ++i) {
+        GTEST_ASSERT_EQ(14 + i,r2.get()[i]);
+    }
+}

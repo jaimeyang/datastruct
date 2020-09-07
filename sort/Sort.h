@@ -19,6 +19,8 @@ public:
     unique_ptr<int> sort_direct(unique_ptr<int> data,int len);
 // sort bable
     unique_ptr<int> sort_bable(unique_ptr<int> data,int len);
+//    sort select
+    unique_ptr<int> sort_select(unique_ptr<int> data,int len);
 private:
 };
 
