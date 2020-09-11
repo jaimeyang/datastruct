@@ -23,7 +23,11 @@ public:
     unique_ptr<int> sort_select(unique_ptr<int> data,int len);
     //todo improvement the alghrothm of direct bable
     unique_ptr<int> sort_bable_2(unique_ptr<int> data,int len);
+
+    void sort_merge(shared_ptr<int> data,int len);
 private:
+    void merge_recurision(shared_ptr<int> data,int begin,int end);
+    void merge(shared_ptr<int> dst,int begin,int middle,int end);
 };
 
 
