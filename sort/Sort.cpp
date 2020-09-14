@@ -139,3 +139,35 @@ void Sort::merge(shared_ptr<int> dst, int begin, int middle, int end) {
         n++;
     }
 }
+
+void Sort::sourt_quick(shared_ptr<int> data, int len) {
+    quick_recurision(data,0,len - 1);
+}
+
+void Sort::quick_recurision(shared_ptr<int> data, int begin, int end) {
+    if ( begin >= end ){
+        return;
+    }
+    int p = partion(data,begin,end);
+    quick_recurision(data,begin,p - 1);
+    quick_recurision(data,p + 1,end);
+}
+
+int Sort::partion(shared_ptr<int> data, int begin, int end) {
+    auto pivot = data.get()[end];
+    auto i = begin;
+    for (int j = begin; j < end; ++j) {
+        if ( data.get()[j] < pivot ){
+            swap(data,i,j);
+            i++;
+        }
+    }
+    swap(data,i,end);
+    return i;
+}
+
+void Sort::swap(shared_ptr<int> data, int pre, int next) {
+    auto temp = data.get()[pre];
+    data.get()[pre] = data.get()[next];
+    data.get()[next] = temp;
+}
