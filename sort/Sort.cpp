@@ -83,33 +83,33 @@ unique_ptr<int> Sort::sort_bable_2(unique_ptr<int> data, int len) {
     return std::move(data);
 }
 
+//根据有序数组合并的性质，进行递归排序
 void Sort::sort_merge(shared_ptr<int> data, int len) {
-    merge_recurision(data,0,len);
+    merge_recurision(data,0,len -1 );
 }
 
 void Sort::merge_recurision(shared_ptr<int> data, int begin, int end) {
-    std::cout<<"begin "<<begin<<std::endl;
-    std::cout<<"end "<<end<<std::endl;
     if (begin >= end){
         return;
     }
     int midle = (begin + end) / 2;
     merge_recurision(data,begin,midle);
-    std::cout<<"left "<<begin<<", "<<data.get()[begin]<<std::endl;
     merge_recurision(data,midle + 1,end);
-    std::cout<<"right "<<midle + 1<<", "<<data.get()[midle + 1]<<std::endl;
     merge(data,begin,midle,end);
-    std::cout<<"begin "<<begin<<", "<<data.get()[begin]<<std::endl;
 }
 
 void Sort::merge(shared_ptr<int> dst, int begin, int middle, int end) {
-    auto len = end - begin;
+    std::cout<<"merge begin "<<begin<<" middle "<<middle<<" end "<<end<<std::endl;
+    for (int i1 = begin; i1 <= end; ++i1) {
+        std::cout<<"i1 is "<<dst.get()[i1]<<std::endl;
+    }
+    auto len = end - begin + 1;
     int a[len];
     auto i = begin;
-    auto j = middle;
+    auto j = middle + 1;
     auto k = 0;
-    while ( (i < middle) && (j < end) ){
-        if ( dst.get()[i] < dst.get()[j]){
+    while ( (i <= middle) && (j <= end) ){
+        if ( dst.get()[i] <= dst.get()[j]){
             a[k] = dst.get()[i];
             i++;
         }else{
@@ -119,28 +119,23 @@ void Sort::merge(shared_ptr<int> dst, int begin, int middle, int end) {
         k++;
     }
 
-    for (int i1 = 0; i1 < (k-1); ++i1) {
-        std::cout<<"a[k] "<<i1<<", "<<a[i1]<<std::endl;
-    }
-
-    auto remain = 0;
-    auto remain_end = 0;
-    if ( i < middle ){
-        remain = middle - i;
-        remain_end = middle;
-    }else{
-        remain = end - j;
+    auto remain_start = i;
+    auto remain_end = middle;
+    if ( j <= end ){
+        remain_start = j;
         remain_end = end;
     }
-    for (int l = remain; l < remain_end; ++l) {
+
+    std::cout<<"remain "<<remain_start<<" remain_end "<<remain_end<<std::endl;
+    for (int l = remain_start; l <= remain_end; ++l) {
         a[k] = dst.get()[l];
         k++;
     }
 
     auto n = 0;
-    for (int m = begin; m < end; ++m) {
+    for (int m = begin; m <= end; ++m) {
         dst.get()[m] = a[n];
-        std::cout<<"circle "<<begin<<", "<<a[n]<<std::endl;
+        std::cout<<"m is "<<m<<", "<<a[n]<<std::endl;
         n++;
     }
 }
