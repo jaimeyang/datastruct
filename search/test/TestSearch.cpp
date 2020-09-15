@@ -31,5 +31,9 @@ TEST_F(TestSearch,test_binary){
 
 TEST_F(TestSearch,test_sqare){
     auto a1 = m_search.get()->square(100);
-    GTEST_ASSERT_EQ(10,a1);
+    double r1 = 10;
+    GTEST_ASSERT_EQ(r1,a1);
+
+    auto a2 = m_search.get()->square(200);
+    GTEST_ASSERT_EQ(14.142135,a2);
 }
