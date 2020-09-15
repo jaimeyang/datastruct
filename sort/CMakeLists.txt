@@ -9,6 +9,6 @@ include_directories(test/lib/googletest/googletest/include)
 
 add_subdirectory(test/lib/googletest)
 
-add_executable(sort Sort.cpp Sort.h test/lib/sort/TestSort.cpp Question.cpp Question.h)
+add_executable(sort Sort.cpp Sort.h test/lib/sort/TestSort.cpp Question.cpp Question.h test/lib/question/TestQuestion.cpp)
 
 target_link_libraries(sort gtest gtest_main)
