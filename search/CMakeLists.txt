@@ -9,6 +9,6 @@ include_directories(test/lib/googletest/googletest/include)
 
 add_subdirectory(test/lib/googletest)
 
-add_executable(search Search.cpp Search.h test/TestSearch.cpp)
+add_executable(search Search.cpp Search.h test/TestSearch.cpp SkipList.cpp SkipList.h)
 
 target_link_libraries(search gtest gtest_main)

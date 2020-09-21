@@ -16,7 +16,9 @@ public:
 
 public:
     int serach_binary(shared_ptr<int> data,int len,int value);
-    //第一个等于值的元素
+
+    //todo 不够高效，继续使用二叉查找
+ //第一个等于值的元素
     int search_binary_eq_first(shared_ptr<int> data,int len,int value);
 //    最后一个等于值的元素
     int search_binary_eq_last(shared_ptr<int> data,int len,int value);
