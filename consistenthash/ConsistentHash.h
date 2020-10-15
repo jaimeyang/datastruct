@@ -7,28 +7,29 @@
 
 #include <memory>
 #include <vector>
+#include <map>
 using namespace std;
 //一致性HASH算法实现
-
-typedef struct ServerHash {
-    const char* server;
-    int hash;
-}ServerHash;
-
+const int MAX_VIRTUAL_NODE = 64;
 class ConsistentHash {
 public:
-    ConsistentHash();
+    ConsistentHash(){
+
+    }
     ~ConsistentHash(){
         remove_all_server();
     }
     void add_server(const char* server);
+    void rem_server(const char* server);
     const char* get_server(const char* key);
     void remove_aerver(const char* server);
 private:
     void has_all_server();
     void remove_all_server();
+    void ketama_md5_digest( char* inString, unsigned char md5pword[16]);
+    unsigned int ketama_hashi( char* inString );
 private:
-   vector<ServerHash*> m_servers;
+   map<unsigned int,const char*> m_servers;
 };
 
 
