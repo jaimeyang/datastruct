@@ -6,6 +6,7 @@
 #define ALGORITHM_EIGHTQUEENS_H
 
 #include <array>
+#include <vector>
 
 const int QUEENS = 8;
 
@@ -22,10 +23,13 @@ public:
     }
 
     void recall_eight(int row);
-    //bool is_valid(const array<>)
+    bool is_valid(int row,int column);
 
 private:
+    //下表表示第几行，值表示在第几列
     array<int,QUEENS> m_queens;
+    //结果
+    vector<array<int,QUEENS>> m_result;
 };
 
 
