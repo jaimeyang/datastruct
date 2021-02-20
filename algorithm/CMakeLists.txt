@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set_target_properties(${TARGET} PROPERTIES COMPILE_FLAGS "-pthread" LINK_FLAGS "-pthread")
 
 include_directories(test/lib/googletest/googletest/include)
+include_directories(recall)
 
 add_subdirectory(test/lib/googletest)
 

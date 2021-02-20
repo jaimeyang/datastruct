@@ -24,7 +24,9 @@ public:
 
     void recall_eight(int row);
     bool is_valid(int row,int column);
-
+    vector<array<int,QUEENS>>& getResult(){
+        return this->m_result;
+    }
 private:
     //下表表示第几行，值表示在第几列
     array<int,QUEENS> m_queens;

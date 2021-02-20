@@ -5,7 +5,7 @@
 #include "EightQueens.h"
 
 void EightQueens::recall_eight(int row) {
-    if ( row > QUEENS ){
+    if ( row >= QUEENS ){
         this->m_result.push_back(this->m_queens);
         return;
     }
@@ -21,7 +21,7 @@ void EightQueens::recall_eight(int row) {
 bool EightQueens::is_valid(int row, int column) {
     auto left_up = column - 1;
     auto right_up = column + 1;
-    for (int i = row - 1; i > 0; --i) {
+    for (int i = row - 1; i >= 0; --i) {
         if (this->m_queens.at(i) == column) {
             return false;
         }
