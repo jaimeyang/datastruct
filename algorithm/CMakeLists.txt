@@ -13,6 +13,9 @@ add_subdirectory(test/lib/googletest)
 add_executable(algorithm
         recall/EightQueens.cpp
         recall/EightQueens.h
-        test/recall/TestEightQueens.cpp)
+        test/recall/TestEightQueens.cpp
+        test/recall/TestBag.cpp
+        recall/Bag.cpp
+        recall/Bag.h)
 
 target_link_libraries(algorithm gtest gtest_main)
